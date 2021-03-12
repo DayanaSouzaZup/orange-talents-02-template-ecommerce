@@ -20,9 +20,12 @@ import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+
+import br.com.zup.oranges2.mercado.livre.repository.UsuarioRepository;
 
 @Entity
 public class Usuario implements UserDetails {
@@ -43,7 +46,6 @@ public class Usuario implements UserDetails {
 	@Column
 	private String senha;
 
-	// @NotNull
 	@PastOrPresent
 	@Column
 	private LocalDateTime instanteCriacao;
@@ -51,17 +53,20 @@ public class Usuario implements UserDetails {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Perfil> perfis = new ArrayList<>();
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Usuario(@NotBlank @Email String email, @Valid @NotNull String senha) {
+		Assert.isTrue(StringUtils.hasLength(email), "O email não pode ser em branco");
+		Assert.notNull(senha, "O campo senha não pode ser nulo");
+		this.email = email;
+		this.senha = senha;
+		this.instanteCriacao = LocalDateTime.now();
 	}
 
+	private Long getId() {
+		return id;
+	}
 
 	public String getEmail() {
 		return email;
-	}
-
-	public String getSenha() {
-		return senha;
 	}
 
 	public LocalDateTime getInstanteCriacao() {
@@ -72,47 +77,14 @@ public class Usuario implements UserDetails {
 		return perfis;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
 	@Deprecated
 	public Usuario() {
 
 	}
 
-	public Usuario(@NotBlank @Email String email, @Valid @NotNull String senha) {
-		Assert.isTrue(StringUtils.hasLength(email), "O email não pode ser em branco");
-		Assert.notNull(senha, "O campo senha não pode ser nulo");
-		this.email = email;
-		this.senha = senha;
-		this.instanteCriacao = LocalDateTime.now();
-	}
-
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", email=" + email + ", senha=" + senha + "]";
+	public static Usuario findAuthenticatedUser(UsuarioRepository usuarioRepository) {
+		Usuario usuarioLogado = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return usuarioRepository.findById(usuarioLogado.getId()).get();
 	}
 
 	@Override
@@ -147,6 +119,31 @@ public class Usuario implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		return true;
 	}
 

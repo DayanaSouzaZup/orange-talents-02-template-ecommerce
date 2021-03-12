@@ -2,9 +2,8 @@ package br.com.zup.oranges2.mercado.livre.dto;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
 
-import org.springframework.util.Assert;
+import org.springframework.lang.Nullable;
 
 import br.com.zup.oranges2.mercado.livre.entity.Categoria;
 import br.com.zup.oranges2.mercado.livre.validation.ExistsId;
@@ -16,7 +15,8 @@ public class CategoriaDto {
 	@UniqueValue(domainClass = Categoria.class, fieldName = "nome")
 	private String nome;
 
-	@ExistsId(domainClass = Categoria.class, fieldName = "id")
+	@Nullable
+	@ExistsId(domainClass = Categoria.class, fieldName = "id", message = "A Categoria mãe ainda não existe")
 	private Long idCategoriaMae;
 
 	public CategoriaDto(@NotBlank String nome, Long idCategoriaMae) {
@@ -30,19 +30,16 @@ public class CategoriaDto {
 
 	}
 
-	@Override
-	public String toString() {
-		return "CategoriaDto [nome=" + nome + ", idCategoriaMae=" + idCategoriaMae + "]";
-	}
-
 	public Categoria toModel(EntityManager manager) {
-		Categoria categoria = new Categoria(nome);
+		
+		Categoria categoria = null;
+
 		if (idCategoriaMae != null) {
 			Categoria categoriaMae = manager.find(Categoria.class, idCategoriaMae);
-			Assert.notNull(categoriaMae, "O id da categoria tem que ser válido");
-			categoria.setMae(categoriaMae);
+			return categoria = new Categoria(nome, categoriaMae);
 		}
-		return categoria;
+		
+		return categoria = new Categoria(nome, null);
 	}
 
 	public String getNome() {
@@ -51,14 +48,6 @@ public class CategoriaDto {
 
 	public Long getIdCategoriaMae() {
 		return idCategoriaMae;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public void setIdCategoriaMae(Long idCategoriaMae) {
-		this.idCategoriaMae = idCategoriaMae;
 	}
 
 }

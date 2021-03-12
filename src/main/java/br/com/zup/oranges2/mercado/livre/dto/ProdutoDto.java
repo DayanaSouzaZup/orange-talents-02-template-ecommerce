@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.validation.Valid;
@@ -42,18 +43,18 @@ public class ProdutoDto {
 
 	@Size(min = 3)
 	@Valid
-	private List<CaracteristicaDto> caracteristicas = new ArrayList<>();
+	private Set<CaracteristicaDto> caracteristicas = new HashSet<>();
 
 	public ProdutoDto(@NotBlank String nome, @NotNull @Positive BigDecimal valor, @Positive int quantidade,
 			@NotBlank @Size(max = 1000) String descricao, @NotNull Long idCategoria,
-			List<CaracteristicaDto> caracteristicas) {
+			Set<CaracteristicaDto> caracteristicas) {
 		super();
 		this.nome = nome;
 		this.valor = valor;
 		this.quantidade = quantidade;
 		this.descricao = descricao;
 		this.idCategoria = idCategoria;
-		this.caracteristicas.addAll(caracteristicas);
+		this.caracteristicas = caracteristicas;
 	}
 
 	public Produto toModel(EntityManager manager, Usuario dono) {
@@ -104,7 +105,7 @@ public class ProdutoDto {
 		return idCategoria;
 	}
 
-	public List<CaracteristicaDto> getCaracteristicas() {
+	public Set<CaracteristicaDto> getCaracteristicas() {
 		return caracteristicas;
 	}
 

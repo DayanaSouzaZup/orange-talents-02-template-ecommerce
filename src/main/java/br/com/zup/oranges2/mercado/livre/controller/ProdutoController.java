@@ -36,10 +36,11 @@ public class ProdutoController {
 	@PostMapping("/produtos")
 	@Transactional
 
-	public ResponseEntity<Produto> cadastraProduto( @RequestBody @Valid ProdutoDto produtoDto, Usuario usuarioLogado) {
-			Produto novoProduto = produtoDto.toModel(manager,usuarioLogado);
-			manager.persist(novoProduto);
-			return ResponseEntity.ok(novoProduto);
-		
+	public ResponseEntity<Produto> cadastraProduto(@RequestBody @Valid ProdutoDto produtoDto) {
+		Usuario usuario = Usuario.findAuthenticatedUser(usuarioRepository);
+		Produto novoProduto = produtoDto.toModel(manager, usuario);
+		manager.persist(novoProduto);
+		return ResponseEntity.ok(novoProduto);
+
 	}
 }
