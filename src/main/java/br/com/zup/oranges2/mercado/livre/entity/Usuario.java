@@ -55,13 +55,6 @@ public class Usuario implements UserDetails {
 		return serialVersionUID;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Long getId() {
-		return id;
-	}
 
 	public String getEmail() {
 		return email;
@@ -109,7 +102,7 @@ public class Usuario implements UserDetails {
 
 	}
 
-	public Usuario(@NotBlank @Email String email, @Valid @NotNull String senhaLimpa) {
+	public Usuario(@NotBlank @Email String email, @Valid @NotNull String senha) {
 		Assert.isTrue(StringUtils.hasLength(email), "O email não pode ser em branco");
 		Assert.notNull(senha, "O campo senha não pode ser nulo");
 		this.email = email;

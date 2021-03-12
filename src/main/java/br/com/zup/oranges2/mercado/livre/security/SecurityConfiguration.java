@@ -37,7 +37,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-
+	
+	@Autowired
 	private TokenService tokenService;
 
 	@Bean
