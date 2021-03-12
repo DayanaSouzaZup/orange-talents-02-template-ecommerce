@@ -1,39 +1,40 @@
 package br.com.zup.oranges2.mercado.livre.security;
 
-import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
+
+import br.com.zup.oranges2.mercado.livre.entity.Usuario;
+import br.com.zup.oranges2.mercado.livre.repository.UsuarioRepository;
 
 @Service
 public class UsersService implements UserDetailsService {
+	
+	private static final String USUARIO_INVALIDO = "Usuário inválido!";
 
 	@PersistenceContext
 	private EntityManager manager;
-	@Value("${security.username-query}")
-	private String query;
+	
 	@Autowired
-	private UserDetailsMapper userDetailsMapper;
+	private UsuarioRepository usuarioRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		List<?> objects = manager.createQuery(query).setParameter("username", username).getResultList();
-		Assert.isTrue(objects.size() <= 1, "[BUG] mais de um autenticável tem o mesmo username. " + username);
+		Optional<Usuario> user = usuarioRepository.findByEmail(username);
 
-		if (objects.isEmpty()) {
-			throw new UsernameNotFoundException("Não foi possível encontrar usuário com email: " + username);
+		if (user.isEmpty()) {
+			throw new UsernameNotFoundException(USUARIO_INVALIDO);
 		}
 
-		return userDetailsMapper.map(objects.get(0));
+		return user.get();
 	}
 
 }

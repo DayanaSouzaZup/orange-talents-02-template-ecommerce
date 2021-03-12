@@ -1,11 +1,11 @@
-package br.com.zup.oranges2.mercado.livre.security;
+package br.com.zup.oranges2.mercado.livre.auth;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 public class LoginInputDto {
 
 	private String email;
-	private String password;
+	private String senha;
 
 	public String getEmail() {
 		return email;
@@ -15,16 +15,16 @@ public class LoginInputDto {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setSenha(String password) {
+		this.senha = password;
 	}
 
 	public UsernamePasswordAuthenticationToken build() {
-		return new UsernamePasswordAuthenticationToken(this.email, this.password);
+		return new UsernamePasswordAuthenticationToken(this.email, this.senha);
 	}
 
 }

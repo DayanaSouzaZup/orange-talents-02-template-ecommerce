@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.zup.oranges2.mercado.livre.dto.ProdutoDto;
-import br.com.zup.oranges2.mercado.livre.dto.UsuarioLogadoDto;
 import br.com.zup.oranges2.mercado.livre.entity.Produto;
 import br.com.zup.oranges2.mercado.livre.entity.Usuario;
 import br.com.zup.oranges2.mercado.livre.repository.UsuarioRepository;
@@ -37,10 +36,10 @@ public class ProdutoController {
 	@PostMapping("/produtos")
 	@Transactional
 
-	public ResponseEntity<UsuarioLogadoDto> cadastraProduto( @RequestBody @Valid ProdutoDto produtoDto, Usuario usuarioLogado) {
+	public ResponseEntity<Produto> cadastraProduto( @RequestBody @Valid ProdutoDto produtoDto, Usuario usuarioLogado) {
 			Produto novoProduto = produtoDto.toModel(manager,usuarioLogado);
 			manager.persist(novoProduto);
-			return ResponseEntity.ok(new UsuarioLogadoDto(novoProduto));
+			return ResponseEntity.ok(novoProduto);
 		
 	}
 }

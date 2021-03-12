@@ -1,4 +1,4 @@
-package br.com.zup.oranges2.mercado.livre.dto;
+package br.com.zup.oranges2.mercado.livre.auth;
 
 public class TokenDto {
 
