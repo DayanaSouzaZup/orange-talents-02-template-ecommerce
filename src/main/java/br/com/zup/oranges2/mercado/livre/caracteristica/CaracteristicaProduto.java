@@ -1,4 +1,4 @@
-package br.com.zup.oranges2.mercado.livre.dto;
+package br.com.zup.oranges2.mercado.livre.caracteristica;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import br.com.zup.oranges2.mercado.livre.entity.Produto;
+import br.com.zup.oranges2.mercado.livre.produto.Produto;
 
 @Entity
 public class CaracteristicaProduto {

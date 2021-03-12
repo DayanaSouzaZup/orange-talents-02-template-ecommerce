@@ -1,9 +1,7 @@
-package br.com.zup.oranges2.mercado.livre.dto;
+package br.com.zup.oranges2.mercado.livre.produto;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -14,9 +12,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-import br.com.zup.oranges2.mercado.livre.entity.Categoria;
-import br.com.zup.oranges2.mercado.livre.entity.Produto;
-import br.com.zup.oranges2.mercado.livre.entity.Usuario;
+import br.com.zup.oranges2.mercado.livre.caracteristica.CaracteristicaDto;
+import br.com.zup.oranges2.mercado.livre.categoria.Categoria;
+import br.com.zup.oranges2.mercado.livre.usuario.Usuario;
 import br.com.zup.oranges2.mercado.livre.validation.ExistsId;
 import br.com.zup.oranges2.mercado.livre.validation.UniqueValue;
 

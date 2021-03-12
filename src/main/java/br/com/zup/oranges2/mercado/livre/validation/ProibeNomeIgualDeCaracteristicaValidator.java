@@ -3,7 +3,7 @@ package br.com.zup.oranges2.mercado.livre.validation;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import br.com.zup.oranges2.mercado.livre.dto.ProdutoDto;
+import br.com.zup.oranges2.mercado.livre.produto.ProdutoDto;
 
 public class ProibeNomeIgualDeCaracteristicaValidator implements Validator {
 

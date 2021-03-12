@@ -1,12 +1,10 @@
-package br.com.zup.oranges2.mercado.livre.dto;
+package br.com.zup.oranges2.mercado.livre.usuario;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import br.com.zup.oranges2.mercado.livre.entity.Usuario;
 
 public class UsuarioDto {
 

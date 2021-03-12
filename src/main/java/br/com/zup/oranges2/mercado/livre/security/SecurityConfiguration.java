@@ -26,7 +26,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import br.com.zup.oranges2.mercado.livre.repository.UsuarioRepository;
+import br.com.zup.oranges2.mercado.livre.usuario.UsuarioRepository;
 
 @Configuration
 @EnableWebSecurity

@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.zup.oranges2.mercado.livre.entity.Usuario;
-import br.com.zup.oranges2.mercado.livre.repository.UsuarioRepository;
+import br.com.zup.oranges2.mercado.livre.usuario.Usuario;
+import br.com.zup.oranges2.mercado.livre.usuario.UsuarioRepository;
 
 @Service
 public class UsersService implements UserDetailsService {

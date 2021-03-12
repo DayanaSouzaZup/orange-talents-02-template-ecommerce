@@ -1,8 +1,6 @@
-package br.com.zup.oranges2.mercado.livre.dto;
+package br.com.zup.oranges2.mercado.livre.usuario;
 
 import java.time.LocalDateTime;
-
-import br.com.zup.oranges2.mercado.livre.entity.Usuario;
 
 public class UsuarioResponse {
 	

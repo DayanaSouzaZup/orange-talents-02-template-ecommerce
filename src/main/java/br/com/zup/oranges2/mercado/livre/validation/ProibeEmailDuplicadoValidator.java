@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import br.com.zup.oranges2.mercado.livre.dto.UsuarioDto;
-import br.com.zup.oranges2.mercado.livre.entity.Usuario;
-import br.com.zup.oranges2.mercado.livre.repository.UsuarioRepository;
+import br.com.zup.oranges2.mercado.livre.usuario.Usuario;
+import br.com.zup.oranges2.mercado.livre.usuario.UsuarioDto;
+import br.com.zup.oranges2.mercado.livre.usuario.UsuarioRepository;
 
 @Component
 public class ProibeEmailDuplicadoValidator implements Validator {

@@ -1,4 +1,4 @@
-package br.com.zup.oranges2.mercado.livre.entity;
+package br.com.zup.oranges2.mercado.livre.produto;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -23,8 +23,10 @@ import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import br.com.zup.oranges2.mercado.livre.dto.CaracteristicaDto;
-import br.com.zup.oranges2.mercado.livre.dto.CaracteristicaProduto;
+import br.com.zup.oranges2.mercado.livre.caracteristica.CaracteristicaDto;
+import br.com.zup.oranges2.mercado.livre.caracteristica.CaracteristicaProduto;
+import br.com.zup.oranges2.mercado.livre.categoria.Categoria;
+import br.com.zup.oranges2.mercado.livre.usuario.Usuario;
 
 @Entity
 public class Produto {

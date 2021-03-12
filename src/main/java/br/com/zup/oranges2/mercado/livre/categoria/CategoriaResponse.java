@@ -1,6 +1,4 @@
-package br.com.zup.oranges2.mercado.livre.dto;
-
-import br.com.zup.oranges2.mercado.livre.entity.Categoria;
+package br.com.zup.oranges2.mercado.livre.categoria;
 
 public class CategoriaResponse {
 

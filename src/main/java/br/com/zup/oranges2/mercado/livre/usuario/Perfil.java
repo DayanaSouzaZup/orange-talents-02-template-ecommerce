@@ -1,4 +1,4 @@
-package br.com.zup.oranges2.mercado.livre.entity;
+package br.com.zup.oranges2.mercado.livre.usuario;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

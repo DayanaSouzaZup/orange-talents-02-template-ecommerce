@@ -1,4 +1,4 @@
-package br.com.zup.oranges2.mercado.livre.controller;
+package br.com.zup.oranges2.mercado.livre.produto;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zup.oranges2.mercado.livre.dto.ProdutoDto;
-import br.com.zup.oranges2.mercado.livre.entity.Produto;
-import br.com.zup.oranges2.mercado.livre.entity.Usuario;
-import br.com.zup.oranges2.mercado.livre.repository.UsuarioRepository;
+import br.com.zup.oranges2.mercado.livre.usuario.Usuario;
+import br.com.zup.oranges2.mercado.livre.usuario.UsuarioRepository;
 import br.com.zup.oranges2.mercado.livre.validation.ProibeNomeIgualDeCaracteristicaValidator;
 
 @RestController

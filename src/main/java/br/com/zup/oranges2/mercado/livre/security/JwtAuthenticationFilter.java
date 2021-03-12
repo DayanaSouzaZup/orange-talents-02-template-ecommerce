@@ -11,8 +11,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import br.com.zup.oranges2.mercado.livre.entity.Usuario;
-import br.com.zup.oranges2.mercado.livre.repository.UsuarioRepository;
+import br.com.zup.oranges2.mercado.livre.usuario.Usuario;
+import br.com.zup.oranges2.mercado.livre.usuario.UsuarioRepository;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 

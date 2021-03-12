@@ -1,10 +1,10 @@
-package br.com.zup.oranges2.mercado.livre.dto;
+package br.com.zup.oranges2.mercado.livre.caracteristica;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import br.com.zup.oranges2.mercado.livre.entity.Produto;
+import br.com.zup.oranges2.mercado.livre.produto.Produto;
 
 public class CaracteristicaDto {
 

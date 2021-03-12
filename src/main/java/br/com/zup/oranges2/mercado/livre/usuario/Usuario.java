@@ -1,4 +1,4 @@
-package br.com.zup.oranges2.mercado.livre.entity;
+package br.com.zup.oranges2.mercado.livre.usuario;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,8 +24,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
-
-import br.com.zup.oranges2.mercado.livre.repository.UsuarioRepository;
 
 @Entity
 public class Usuario implements UserDetails {

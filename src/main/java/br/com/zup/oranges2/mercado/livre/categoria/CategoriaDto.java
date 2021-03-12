@@ -1,11 +1,10 @@
-package br.com.zup.oranges2.mercado.livre.dto;
+package br.com.zup.oranges2.mercado.livre.categoria;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.lang.Nullable;
 
-import br.com.zup.oranges2.mercado.livre.entity.Categoria;
 import br.com.zup.oranges2.mercado.livre.validation.ExistsId;
 import br.com.zup.oranges2.mercado.livre.validation.UniqueValue;
 

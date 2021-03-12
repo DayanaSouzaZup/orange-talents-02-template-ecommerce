@@ -1,4 +1,4 @@
-package br.com.zup.oranges2.mercado.livre.controller;
+package br.com.zup.oranges2.mercado.livre.categoria;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,10 +8,6 @@ import javax.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import br.com.zup.oranges2.mercado.livre.dto.CategoriaDto;
-import br.com.zup.oranges2.mercado.livre.dto.CategoriaResponse;
-import br.com.zup.oranges2.mercado.livre.entity.Categoria;
 
 @RestController
 public class CategoriaController {
