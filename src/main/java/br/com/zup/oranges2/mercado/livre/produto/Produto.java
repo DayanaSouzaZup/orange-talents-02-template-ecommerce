@@ -24,7 +24,7 @@ import org.hibernate.validator.constraints.Length;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.zup.oranges2.mercado.livre.caracteristica.CaracteristicaDto;
-import br.com.zup.oranges2.mercado.livre.caracteristica.CaracteristicaProduto;
+import br.com.zup.oranges2.mercado.livre.caracteristica.Caracteristica;
 import br.com.zup.oranges2.mercado.livre.categoria.Categoria;
 import br.com.zup.oranges2.mercado.livre.imagem.ImagemProduto;
 import br.com.zup.oranges2.mercado.livre.usuario.Usuario;
@@ -62,7 +62,7 @@ public class Produto {
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
-	private Set<CaracteristicaProduto> caracteristicas = new HashSet<>();
+	private Set<Caracteristica> caracteristicas = new HashSet<>();
 
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
 	private Set<ImagemProduto> imagens = new HashSet<>();
@@ -145,7 +145,7 @@ public class Produto {
 		return dono;
 	}
 
-	public Set<CaracteristicaProduto> getCaracteristicas() {
+	public Set<Caracteristica> getCaracteristicas() {
 		return caracteristicas;
 	}
 

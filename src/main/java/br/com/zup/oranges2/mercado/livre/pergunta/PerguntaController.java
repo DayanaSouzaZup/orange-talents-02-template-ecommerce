@@ -1,4 +1,4 @@
-package br.com.zup.oranges2.mercado.livre.opiniao;
+package br.com.zup.oranges2.mercado.livre.pergunta;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,26 +16,23 @@ import br.com.zup.oranges2.mercado.livre.usuario.Usuario;
 import br.com.zup.oranges2.mercado.livre.usuario.UsuarioRepository;
 
 @RestController
-public class OpiniaoController {
+public class PerguntaController {
 	
 	@PersistenceContext
 	private EntityManager manager;
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-
 	
-	@PostMapping(value = "/produtos/{id}/opinioes")
+	@PostMapping(value = "/produtos/{id}/perguntas")
 	@Transactional
-	public String cadastraOpiniao(@RequestBody @Valid OpiniaoDto opiniaoDto, @PathVariable ("id") Long id) {
-		
+	public String cadastraPergunta(@RequestBody @Valid PerguntaDto respostaDto, @PathVariable ("id") Long id) {
 		Produto produto = manager.find(Produto.class, id);
-		Usuario consumidor = Usuario.findAuthenticatedUser(usuarioRepository);
-		Opiniao opiniaoDada = opiniaoDto.toModel(produto, consumidor);
+		Usuario interessado = Usuario.findAuthenticatedUser(usuarioRepository);
+		Pergunta novaPergunta = respostaDto.toModel(interessado, produto);
 		
-		manager.persist(opiniaoDada);
-		return opiniaoDada.toString();
+		manager.persist(novaPergunta);
+		return novaPergunta.toString();
 	}
-	
 
 }

@@ -33,9 +33,9 @@ public class CaracteristicaDto {
 		return descricao;
 	}
 
-	public CaracteristicaProduto toModel(@NotNull @Valid Produto produto) {
+	public Caracteristica toModel(@NotNull @Valid Produto produto) {
 		
-		return new CaracteristicaProduto(nome, descricao, produto);
+		return new Caracteristica(nome, descricao, produto);
 	}
 
 }
