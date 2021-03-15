@@ -32,6 +32,10 @@ public class CaracteristicaProduto {
 	@JsonBackReference
 	private Produto produto;
 
+	@Deprecated
+	public CaracteristicaProduto() {
+	}
+
 	public CaracteristicaProduto(@NotBlank String nome, @NotBlank String descricao, @NotNull @Valid Produto produto) {
 		super();
 		this.nome = nome;
@@ -55,9 +59,6 @@ public class CaracteristicaProduto {
 		return produto;
 	}
 
-	@Deprecated
-	public CaracteristicaProduto() {
-	}
 
 	@Override
 	public int hashCode() {

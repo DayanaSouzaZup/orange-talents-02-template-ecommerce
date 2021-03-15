@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import br.com.zup.oranges2.mercado.livre.caracteristica.CaracteristicaDto;
 import br.com.zup.oranges2.mercado.livre.caracteristica.CaracteristicaProduto;
 import br.com.zup.oranges2.mercado.livre.categoria.Categoria;
+import br.com.zup.oranges2.mercado.livre.imagem.ImagemProduto;
 import br.com.zup.oranges2.mercado.livre.usuario.Usuario;
 
 @Entity
@@ -63,6 +64,9 @@ public class Produto {
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
 	private Set<CaracteristicaProduto> caracteristicas = new HashSet<>();
 
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+	private Set<ImagemProduto> imagens = new HashSet<>();
+
 	public Produto(@NotBlank String nome, @NotNull @Positive BigDecimal valor, @Positive int quantidade,
 			@NotBlank @Size(max = 1000) String descricao, @NotNull @Valid Categoria categoria,
 			@NotNull @Valid Usuario dono, @Size(min = 3) @Valid Collection<CaracteristicaDto> caracteristicas) {
@@ -74,6 +78,10 @@ public class Produto {
 		this.dono = dono;
 		this.caracteristicas.addAll(caracteristicas.stream().map(caracteristica -> caracteristica.toModel(this))
 				.collect(Collectors.toSet()));
+	}
+
+	@Deprecated
+	public Produto() {
 
 	}
 
@@ -81,7 +89,7 @@ public class Produto {
 	public String toString() {
 		return "Produto [id=" + id + ", nome=" + nome + ", valor=" + valor + ", quantidade=" + quantidade
 				+ ", descricao=" + descricao + ", categoria=" + categoria + ", dono=" + dono + ", caracteristicas="
-				+ caracteristicas + "]";
+				+ caracteristicas + ", imagens=" + imagens + "]";
 	}
 
 	@Override
@@ -139,6 +147,17 @@ public class Produto {
 
 	public Set<CaracteristicaProduto> getCaracteristicas() {
 		return caracteristicas;
+	}
+
+	public void associaImagens(Set<String> links) {
+		Set<ImagemProduto> imagens = links.stream().map(link -> new ImagemProduto(this, link))
+				.collect(Collectors.toSet());
+		this.imagens.addAll(imagens);
+	}
+
+	public boolean pertenceAoUsuario(Usuario possivelDono) {
+
+		return this.dono.equals(possivelDono);
 	}
 
 }
