@@ -1,5 +1,6 @@
 package br.com.zup.oranges2.mercado.livre.pergunta;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -30,6 +31,8 @@ public class Pergunta {
 	@ManyToOne
 	private Usuario usuario;
 
+	private LocalDate instante;
+
 	@Deprecated
 	public Pergunta() {
 		
@@ -40,6 +43,7 @@ public class Pergunta {
 		this.titulo = titulo;
 		this.produto = produto;
 		this.usuario = usuario;
+		this.instante = LocalDate.now();
 	}
 
 
