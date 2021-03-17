@@ -25,7 +25,7 @@ public class Opiniao {
 	@NotBlank
 	@Min(1)
 	@Max(5)
-	private String nota;
+	private int nota;
 
 	@NotBlank
 	private String titulo;
@@ -49,7 +49,7 @@ public class Opiniao {
 
 	}
 
-	public Opiniao(@NotBlank @Min(1) @Max(5) String nota, @NotBlank String titulo,
+	public Opiniao(@NotBlank @Min(1) @Max(5) @NotBlank @Min(1) @Max(5) int nota, @NotBlank String titulo,
 			@NotBlank @Size(max = 500) String descricao, @NotNull @Valid Produto produto,
 			@NotNull @Valid Usuario consumidor) {
 		super();
@@ -66,7 +66,7 @@ public class Opiniao {
 				+ produto + ", consumidor=" + consumidor + "]";
 	}
 
-	public String getNota() {
+	public int getNota() {
 		return nota;
 	}
 

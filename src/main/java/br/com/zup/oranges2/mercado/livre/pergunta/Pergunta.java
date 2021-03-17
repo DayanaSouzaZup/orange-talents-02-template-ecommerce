@@ -1,7 +1,6 @@
 package br.com.zup.oranges2.mercado.livre.pergunta;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +13,7 @@ import br.com.zup.oranges2.mercado.livre.produto.Produto;
 import br.com.zup.oranges2.mercado.livre.usuario.Usuario;
 
 @Entity
-public class Pergunta {
+public class Pergunta implements Comparable<Pergunta>{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,6 +70,12 @@ public class Pergunta {
 	public Usuario getUsuario() {
 		return usuario;
 	}
+
+	@Override
+	public int compareTo(Pergunta o) {
+		return this.titulo.compareTo(o.titulo);
+	}
+	
 	
 	
 

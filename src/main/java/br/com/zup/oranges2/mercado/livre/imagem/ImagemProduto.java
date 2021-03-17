@@ -45,4 +45,13 @@ public class ImagemProduto {
 		return "ImagemProduto [id=" + id + ", link=" + link + "]";
 	}
 
+	public Object getLink() {
+		return link;
+	}
+
+	public Object getTitulo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
