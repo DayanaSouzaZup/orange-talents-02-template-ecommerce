@@ -14,18 +14,23 @@ public class DetalheProdutoDto {
 	private String descricao;
 	private String nome;
 	private BigDecimal valor;
+
 	private Set<DetalheProdutoCaracteristica> caracteristicas;
 	private Set<String> linksImagens;
 	private SortedSet<String> perguntas = new TreeSet<>();
 	private Set<Map<String, String>> opinioes;
+
 	private double mediaNotas;
 
 	public DetalheProdutoDto(Produto produto) {
 		this.descricao = produto.getDescricao();
 		this.nome = produto.getNome();
 		this.valor = produto.getValor();
+
 		this.caracteristicas = produto.mapeiaCaracteristicas(DetalheProdutoCaracteristica::new);
+
 		this.linksImagens = produto.mapeiaImagens(imagem -> imagem.getLink());
+
 		this.perguntas = produto.mapeiaPerguntas(pergunta -> pergunta.getTitulo());
 
 		Opinioes opinioes = produto.getOpinioes();

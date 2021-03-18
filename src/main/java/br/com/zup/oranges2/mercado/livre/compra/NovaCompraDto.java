@@ -3,6 +3,9 @@ package br.com.zup.oranges2.mercado.livre.compra;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+import br.com.zup.oranges2.mercado.livre.produto.Produto;
+import br.com.zup.oranges2.mercado.livre.usuario.Usuario;
+
 public class NovaCompraDto {
 
 	@Positive
@@ -33,4 +36,7 @@ public class NovaCompraDto {
 		return gateway;
 	}
 
+	public Compra toModel(Produto produtoSelecionado, Usuario comprador) {
+		return new Compra(produtoSelecionado, quantidade, comprador, this.gateway);
+	}
 }

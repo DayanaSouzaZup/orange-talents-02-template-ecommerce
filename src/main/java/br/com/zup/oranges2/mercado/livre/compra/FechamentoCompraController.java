@@ -1,7 +1,7 @@
 package br.com.zup.oranges2.mercado.livre.compra;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.net.URI;
 import java.net.URISyntaxException;
 
 import javax.persistence.EntityManager;
@@ -18,11 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.sun.org.apache.xerces.internal.util.URI;
-
 import br.com.zup.oranges2.mercado.livre.email.GerenciadorEmail;
 import br.com.zup.oranges2.mercado.livre.produto.Produto;
 import br.com.zup.oranges2.mercado.livre.usuario.Usuario;
+import br.com.zup.oranges2.mercado.livre.usuario.UsuarioLogado;
 
 @RestController
 public class FechamentoCompraController {
@@ -39,9 +38,9 @@ public class FechamentoCompraController {
 			@AuthenticationPrincipal UsuarioLogado usuarioLogado, UriComponentsBuilder uriComponentsBuilder)
 			throws URISyntaxException {
 
-		Produto produtoSelecionado = manager.find(Produto.class, request.getIdProduto());
+		Produto produtoSelecionado = manager.find(Produto.class, compraDto.getIdProduto());
 
-		boolean qtdDisponivel = produtoSelecionado.verificaQtdEstoque(request.getQuantidade());
+		boolean qtdDisponivel = produtoSelecionado.produtoAbateEstoque(compraDto.getQuantidade());
 
 		if (!qtdDisponivel) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)

@@ -120,4 +120,9 @@ public class Compra {
 		return !transacoesConcluidasComSucesso().isEmpty();
 	}
 
+	public Usuario getVendendor() {
+		
+		return  produtoEscolhido.getDono();
+	}
+
 }

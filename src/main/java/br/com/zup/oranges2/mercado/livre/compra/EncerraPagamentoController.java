@@ -5,6 +5,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,9 @@ public class EncerraPagamentoController {
 	
 	@PersistenceContext
 	private EntityManager manager;
+	
+	@Autowired
+	private EventosNovaCompra eventosNovaCompra;
 	
 	@PostMapping(value = "/retorno-pagseguro/{id}")
 	@Transactional
