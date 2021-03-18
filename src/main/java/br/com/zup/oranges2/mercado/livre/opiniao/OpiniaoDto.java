@@ -15,7 +15,7 @@ public class OpiniaoDto {
 	@NotBlank
 	@Min(1)
 	@Max(5)
-	private String nota;
+	private int nota;
 
 	@NotBlank
 	private String titulo;
@@ -24,7 +24,7 @@ public class OpiniaoDto {
 	@Size(max = 500)
 	private String descricao;
 
-	public OpiniaoDto(@NotNull @Min(1) @Max(5) String nota, @NotNull String titulo,
+	public OpiniaoDto(@NotNull @Min(1) @Max(5) int nota, @NotNull String titulo,
 			@NotBlank @Size(max = 500) String descricao) {
 		super();
 		this.nota = nota;

@@ -35,6 +35,7 @@ import br.com.zup.oranges2.mercado.livre.opiniao.Opiniao;
 import br.com.zup.oranges2.mercado.livre.opiniao.Opinioes;
 import br.com.zup.oranges2.mercado.livre.pergunta.Pergunta;
 import br.com.zup.oranges2.mercado.livre.usuario.Usuario;
+import io.jsonwebtoken.lang.Assert;
 
 @Entity
 public class Produto {
@@ -188,6 +189,18 @@ public class Produto {
 
 	public Opinioes getOpinioes() {
 		return new Opinioes(this.opinioes);
+	}
+
+	public boolean produtoAbateEstoque(@Positive int quantidade) {
+		Assert.isTrue(quantidade > 0, "A quantidade deve ser maior que zero");
+		
+		if(quantidade <= this.quantidade) {
+			this.quantidade-=quantidade;
+			return true;
+		}
+		
+		return false;
+		
 	}
 
 }
